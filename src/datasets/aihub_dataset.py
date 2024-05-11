@@ -3,9 +3,10 @@ import pandas as pd
 from pathlib import Path
 
 class AIHUB(SimpleAudioFakeDataset):                                            
-    def __init__(self, root_path, **kwargs):
-        super().__init__(root_path, **kwargs)
-        self.root_path = Path(f'{root_path}/aihub')
+    def __init__(self, root_path, subset=None, **kwargs):
+        super().__init__(root_path, subset, **kwargs)
+        self.root_path = Path(f'{root_path}')
+        self.subset = subset
         self.samples = self.load_samples()
 
     def load_samples(self):
@@ -24,7 +25,10 @@ class AIHUB(SimpleAudioFakeDataset):
             print(f"{path} 경로를 찾을 수 없습니다.")
         
         samples_list = list(path.rglob("*.wav"))
-        samples_list = self.split_samples(samples_list)
+        if self.subset == 'train':
+            samples_list = samples_list[:int(len(samples_list)*0.7)]
+        else:
+            samples_list = samples_list[int(len(samples_list)*0.7):]
         for sample in samples_list:
             samples["user_id"].append(None)
             samples["path"].append(sample)
