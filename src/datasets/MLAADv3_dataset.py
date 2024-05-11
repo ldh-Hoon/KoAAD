@@ -32,8 +32,10 @@ class MLAADv3(SimpleAudioFakeDataset):
             samples_list = list(path.rglob("*.wav"))
             if self.subset == 'train':
                 samples_list = samples_list[:int(len(samples_list)*0.7)]
+                print(f"__MLAADv3_train:{len(samples_list)}")
             else:
                 samples_list = samples_list[int(len(samples_list)*0.7):]
+                print(f"__MLAADv3_test:{len(samples_list)}")
             for sample in samples_list:
                 samples["user_id"].append(None)
                 samples["language"].append(lang)
