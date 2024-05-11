@@ -27,7 +27,7 @@ class DetectionDataset(SimpleAudioFakeDataset):
         asvspoof2019_path=None,
         MLAADv3_path=None,
         MAILABS_path=None,
-        aihub_path=None,
+        AIHUB_path=None,
         KoAAD_path=None,
         subset: str = "val",
         transform=None,
@@ -50,7 +50,7 @@ class DetectionDataset(SimpleAudioFakeDataset):
             asvspoof2019_path=asvspoof2019_path,
             MLAADv3_path=MLAADv3_path,
             MAILABS_path=MAILABS_path,
-            aihub_path=aihub_path,
+            AIHUB_path=AIHUB_path,
             KoAAD_path=KoAAD_path,
             subset=subset,
         )
@@ -76,7 +76,7 @@ class DetectionDataset(SimpleAudioFakeDataset):
         asvspoof2019_path: Optional[str],
         MLAADv3_path=Optional[str],
         MAILABS_path=Optional[str],
-        aihub_path=Optional[str],
+        AIHUB_path=Optional[str],
         KoAAD_path=Optional[str],
         subset: str,
     ) -> List[SimpleAudioFakeDataset]:
@@ -108,8 +108,8 @@ class DetectionDataset(SimpleAudioFakeDataset):
             MAILABS_dataset = MAILABS(MAILABS_path, subset=subset)
             datasets.append(MAILABS_dataset)
 
-        if aihub_path is not None:
-            aihub_dataset = AIHUB(aihub_path, subset=subset)
+        if AIHUB_path is not None:
+            aihub_dataset = AIHUB(AIHUB_path, subset=subset)
             datasets.append(aihub_dataset)
 
         if KoAAD_path is not None:
