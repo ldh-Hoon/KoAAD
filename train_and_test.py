@@ -22,20 +22,34 @@ LOGGER.addHandler(ch)
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    ASVSPOOF_DATASET_PATH = "../datasets/ASVspoof2021/DF"
-    IN_THE_WILD_DATASET_PATH = "../datasets/release_in_the_wild"
-
+    MLAADv3_DATASET_PATH = None
+    MAILABS_DATASET_PATH = None
+    KoAAD_DATASET_PATH = None
+    AIHUB_DATASET_PATH = None
+    
     parser.add_argument(
-        "--asv_path",
+        "--MLAADv3_path",
         type=str,
-        default=ASVSPOOF_DATASET_PATH,
-        help="Path to ASVspoof2021 dataset directory",
+        default=MLAADv3_DATASET_PATH,
+        help="Path to MLAADv3 dataset directory",
     )
     parser.add_argument(
-        "--in_the_wild_path",
+        "--MAILABS_path",
         type=str,
-        default=IN_THE_WILD_DATASET_PATH,
-        help="Path to In The Wild dataset directory",
+        default=MAILABS_DATASET_PATH,
+        help="Path to MAILABS dataset directory",
+    )
+    parser.add_argument(
+        "--KoAAD_path",
+        type=str,
+        default=KoAAD_DATASET_PATH,
+        help="Path to KoAAD dataset directory",
+    )
+    parser.add_argument(
+        "--AIHUB_path",
+        type=str,
+        default=AIHUB_DATASET_PATH,
+        help="Path to AIHUB dataset directory",
     )
     default_model_config = "config.yaml"
     parser.add_argument(
@@ -124,7 +138,10 @@ if __name__ == "__main__":
 
     evaluation_config_path, model_path = train_models.train_nn(
         datasets_paths=[
-            args.asv_path,
+            args.MLAADv3_path,
+            args.MAILABS_path,
+            args.AIHUB_path,
+            args.KoAAD_path
         ],
         device=device,
         amount_to_use=(args.train_amount, args.valid_amount),
@@ -140,7 +157,10 @@ if __name__ == "__main__":
     evaluate_models.evaluate_nn(
         model_paths=config["checkpoint"].get("path", []),
         batch_size=args.batch_size,
-        datasets_paths=[args.in_the_wild_path],
+        datasets_paths=[args.MLAADv3_path,
+            args.MAILABS_path,
+            args.AIHUB_path,
+            args.KoAAD_path],
         model_config=config["model"],
         amount_to_use=args.test_amount,
         device=device,
