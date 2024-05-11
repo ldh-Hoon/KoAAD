@@ -26,8 +26,10 @@ class MAILABS(SimpleAudioFakeDataset):
         samples_list = list(path.rglob("*.wav"))
         if self.subset == 'train':
             samples_list = samples_list[:int(len(samples_list)*0.7)]
+            print(f"__MAILABS_train:{len(samples_list)}")
         else:
             samples_list = samples_list[int(len(samples_list)*0.7):]
+            print(f"__MAILABS_test:{len(samples_list)}")
         for sample in samples_list:
             samples["user_id"].append(None)
             samples["path"].append(sample)
