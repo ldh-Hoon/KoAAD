@@ -7,8 +7,8 @@ class MLAADv3(SimpleAudioFakeDataset):
                'uk', 'pl', 'en', 'sw', 'mt', 'sk', 'ro', 'hi', 'cs', 'nl', 'it', 'de']
                                             
     def __init__(self, root_path, subset=None, **kwargs):
-        super().__init__(root_path, subset=subset, **kwargs)
-        self.root_path = Path(f'{root_path}/MLAADv3')
+        super().__init__(root_path, subset, **kwargs)
+        self.root_path = Path(f'{root_path}')
         self.subset = subset
         self.samples = self.load_samples()
 
