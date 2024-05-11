@@ -29,13 +29,19 @@ def get_datasets(
     amount_to_use: Tuple[Optional[int], Optional[int]],
 ) -> Tuple[DetectionDataset, DetectionDataset]:
     data_train = DetectionDataset(
-        asvspoof_path=datasets_paths[0],
+        MLAADv3_path=datasets_paths[0],
+        MAILABS_path=datasets_paths[1],
+        AIHUB_path=datasets_paths[2],
+        KoAAD_path=datasets_paths[3],
         subset="train",
         reduced_number=amount_to_use[0],
         oversample=True,
     )
     data_test = DetectionDataset(
-        asvspoof_path=datasets_paths[0],
+        MLAADv3_path=datasets_paths[0],
+        MAILABS_path=datasets_paths[1],
+        AIHUB_path=datasets_paths[2],
+        KoAAD_path=datasets_paths[3],
         subset="test",
         reduced_number=amount_to_use[1],
         oversample=True,
@@ -165,13 +171,34 @@ def main(args):
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    ASVSPOOF_DATASET_PATH = "../datasets/ASVspoof2021/DF"
-
+    MLAADv3_DATASET_PATH = None
+    MAILABS_DATASET_PATH = None
+    KoAAD_DATASET_PATH = None
+    AIHUB_DATASET_PATH = None
+    
     parser.add_argument(
-        "--asv_path",
+        "--MLAADv3_path",
         type=str,
-        default=ASVSPOOF_DATASET_PATH,
-        help="Path to ASVspoof2021 dataset directory",
+        default=MLAADv3_DATASET_PATH,
+        help="Path to MLAADv3 dataset directory",
+    )
+    parser.add_argument(
+        "--MAILABS_path",
+        type=str,
+        default=MAILABS_DATASET_PATH,
+        help="Path to MAILABS dataset directory",
+    )
+    parser.add_argument(
+        "--KoAAD_path",
+        type=str,
+        default=KoAAD_DATASET_PATH,
+        help="Path to KoAAD dataset directory",
+    )
+    parser.add_argument(
+        "--AIHUB_path",
+        type=str,
+        default=AIHUB_DATASET_PATH,
+        help="Path to AIHUB dataset directory",
     )
 
     default_model_config = "config.yaml"
