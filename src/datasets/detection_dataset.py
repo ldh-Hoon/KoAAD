@@ -70,6 +70,7 @@ class DetectionDataset(SimpleAudioFakeDataset):
 
     def _init_datasets(
         self,
+        subset: str,
         asvspoof_path: Optional[str],
         wavefake_path: Optional[str],
         fakeavceleb_path: Optional[str],
@@ -78,7 +79,6 @@ class DetectionDataset(SimpleAudioFakeDataset):
         MAILABS_path=Optional[str],
         AIHUB_path=Optional[str],
         KoAAD_path=Optional[str],
-        subset: str,
     ) -> List[SimpleAudioFakeDataset]:
         datasets = []
 
