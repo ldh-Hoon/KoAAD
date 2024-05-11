@@ -47,6 +47,7 @@ def get_datasets(
         oversample=True,
     )
 
+    print(f"train:{len(data_train)}, test:{len(data_test)}")
     return data_train, data_test
 
 
