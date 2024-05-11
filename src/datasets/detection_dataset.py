@@ -9,6 +9,10 @@ from src.datasets.deepfake_asvspoof_dataset import DeepFakeASVSpoofDataset
 from src.datasets.fakeavceleb_dataset import FakeAVCelebDataset
 from src.datasets.wavefake_dataset import WaveFakeDataset
 from src.datasets.asvspoof_dataset import ASVSpoof2019DatasetOriginal
+from src.datasets.MLAADv3_dataset import MLAADv3
+from src.datasets.MAILABS_dataset import MAILABS
+from src.datasets.aihub_dataset import AIHUB
+from src.datasets.KoAAD_dataset import KoAAD
 
 
 LOGGER = logging.getLogger()
@@ -21,6 +25,10 @@ class DetectionDataset(SimpleAudioFakeDataset):
         wavefake_path=None,
         fakeavceleb_path=None,
         asvspoof2019_path=None,
+        MLAADv3_path=None,
+        MAILABS_path=None,
+        aihub_path=None,
+        KoAAD_path=None,
         subset: str = "val",
         transform=None,
         oversample: bool = True,
@@ -40,6 +48,10 @@ class DetectionDataset(SimpleAudioFakeDataset):
             wavefake_path=wavefake_path,
             fakeavceleb_path=fakeavceleb_path,
             asvspoof2019_path=asvspoof2019_path,
+            MLAADv3_path=MLAADv3_path,
+            MAILABS_path=MAILABS_path,
+            aihub_path=aihub_path,
+            KoAAD_path=KoAAD_path,
             subset=subset,
         )
         self.samples = pd.concat([ds.samples for ds in datasets], ignore_index=True)
@@ -62,6 +74,10 @@ class DetectionDataset(SimpleAudioFakeDataset):
         wavefake_path: Optional[str],
         fakeavceleb_path: Optional[str],
         asvspoof2019_path: Optional[str],
+        MLAADv3_path=Optional[str],
+        MAILABS_path=Optional[str],
+        aihub_path=Optional[str],
+        KoAAD_path=Optional[str],
         subset: str,
     ) -> List[SimpleAudioFakeDataset]:
         datasets = []
@@ -84,6 +100,21 @@ class DetectionDataset(SimpleAudioFakeDataset):
             )
             datasets.append(la_dataset)
 
+        if MLAADv3_path is not None:
+            MLAADv3_dataset = MLAADv3(MLAADv3_path, subset=subset)
+            datasets.append(MLAADv3_dataset)
+
+        if MAILABS_path is not None:
+            MAILABS_dataset = MAILABS(MAILABS_path, subset=subset)
+            datasets.append(MAILABS_dataset)
+
+        if aihub_path is not None:
+            aihub_dataset = AIHUB(aihub_path, subset=subset)
+            datasets.append(aihub_dataset)
+
+        if KoAAD_path is not None:
+            KoAAD_dataset = KoAAD(KoAAD_path, subset=subset)
+            datasets.append(KoAAD_dataset)
         return datasets
 
     def oversample_dataset(self):
