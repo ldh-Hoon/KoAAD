@@ -12,18 +12,7 @@ from torch.utils.data import DataLoader
 from src import metrics, commons
 from src.models import models
 from src.datasets.base_dataset import SimpleAudioFakeDataset
-from src.datasets.in_the_wild_dataset import InTheWildDataset
-
-
-def get_dataset(
-    datasets_paths: List[Union[Path, str]],
-    amount_to_use: Optional[int],
-) -> SimpleAudioFakeDataset:
-    data_val = InTheWildDataset(
-        subset="foo",
-        path=datasets_paths[0],
-    )
-    return data_val
+from src.datasets.detection_dataset import InTheWildDataset
 
 
 def evaluate_nn(
@@ -48,9 +37,14 @@ def evaluate_nn(
         model.load_state_dict(torch.load(model_paths))
     model = model.to(device)
 
-    data_val = get_dataset(
-        datasets_paths=datasets_paths,
-        amount_to_use=amount_to_use,
+    data_val = = DetectionDataset(
+        MLAADv3_path=datasets_paths[0],
+        MAILABS_path=datasets_paths[1],
+        AIHUB_path=datasets_paths[2],
+        KoAAD_path=datasets_paths[3],
+        subset="test",
+        reduced_number=amount_to_use[1],
+        oversample=True,
     )
 
     logging.info(
@@ -144,7 +138,10 @@ def main(args):
     evaluate_nn(
         model_paths=config["checkpoint"].get("path", []),
         datasets_paths=[
-            args.in_the_wild_path,
+            args.MLAADv3_path,
+            args.MAILABS_path,
+            args.KoAAD_path,
+            args.AIHUB_path,
         ],
         model_config=config["model"],
         amount_to_use=args.amount,
@@ -155,13 +152,35 @@ def main(args):
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    # If assigned as None, then it won't be taken into account
-    IN_THE_WILD_DATASET_PATH = "../datasets/release_in_the_wild"
-
+    MLAADv3_DATASET_PATH = None
+    MAILABS_DATASET_PATH = None
+    KoAAD_DATASET_PATH = None
+    AIHUB_DATASET_PATH = None
+    
     parser.add_argument(
-        "--in_the_wild_path", type=str, default=IN_THE_WILD_DATASET_PATH
+        "--MLAADv3_path",
+        type=str,
+        default=MLAADv3_DATASET_PATH,
+        help="Path to MLAADv3 dataset directory",
     )
-
+    parser.add_argument(
+        "--MAILABS_path",
+        type=str,
+        default=MAILABS_DATASET_PATH,
+        help="Path to MAILABS dataset directory",
+    )
+    parser.add_argument(
+        "--KoAAD_path",
+        type=str,
+        default=KoAAD_DATASET_PATH,
+        help="Path to KoAAD dataset directory",
+    )
+    parser.add_argument(
+        "--AIHUB_path",
+        type=str,
+        default=AIHUB_DATASET_PATH,
+        help="Path to AIHUB dataset directory",
+    )
     default_model_config = "config.yaml"
     parser.add_argument(
         "--config",
