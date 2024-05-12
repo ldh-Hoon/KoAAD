@@ -43,7 +43,7 @@ def evaluate_nn(
         AIHUB_path=datasets_paths[2],
         KoAAD_path=datasets_paths[3],
         subset="test",
-        reduced_number=amount_to_use[1],
+        reduced_number=amount_to_use,
         oversample=True,
     )
 
@@ -144,7 +144,7 @@ def main(args):
             args.AIHUB_path,
         ],
         model_config=config["model"],
-        amount_to_use=args.amount,
+        amount_to_use=args.test_amount,
         device=device,
     )
 
