@@ -155,10 +155,10 @@ def main(args):
 
     train_nn(
         datasets_paths=[
-            args.asv_path,
-            args.wavefake_path,
-            args.celeb_path,
-            args.asv19_path,
+            args.MLAADv3_path,
+            args.MAILABS_path,
+            args.KoAAD_path,
+            args.AIHUB_path,
         ],
         device=device,
         amount_to_use=(args.train_amount, args.test_amount),
