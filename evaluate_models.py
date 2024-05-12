@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader
 from src import metrics, commons
 from src.models import models
 from src.datasets.base_dataset import SimpleAudioFakeDataset
-from src.datasets.detection_dataset import InTheWildDataset
+from src.datasets.detection_dataset import DetectionDataset
 
 
 def evaluate_nn(
