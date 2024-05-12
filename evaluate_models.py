@@ -37,7 +37,7 @@ def evaluate_nn(
         model.load_state_dict(torch.load(model_paths))
     model = model.to(device)
 
-    data_val = = DetectionDataset(
+    data_val = DetectionDataset(
         MLAADv3_path=datasets_paths[0],
         MAILABS_path=datasets_paths[1],
         AIHUB_path=datasets_paths[2],
