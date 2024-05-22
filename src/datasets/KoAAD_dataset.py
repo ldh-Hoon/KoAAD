@@ -18,25 +18,27 @@ class KoAAD(SimpleAudioFakeDataset):
             "path": []
         }
 
-        path = self.root_path / ""
+        folders_1 = list(self.root_path.glob("*"))
+        for f1 in folders_1:
+            if not os.path.isdir(f1):
+                continue
         
-        # 해당 언어의 디렉토리가 존재하는지 확인
-        if not path.exists():
-            print(f"{path} 경로를 찾을 수 없습니다.")
-        
-        samples_list = list(path.rglob("*.wav"))
-        if self.subset == 'train':
-            samples_list = samples_list[:int(len(samples_list)*0.7)]
-            print(f"__KoAAD_train:{len(samples_list)}")
-        else:
-            samples_list = samples_list[int(len(samples_list)*0.7):]
-            print(f"__KoAAD_test:{len(samples_list)}")
-        for sample in samples_list:
-            samples["user_id"].append(None)
-            samples["path"].append(sample)
-            samples["sample_name"].append(sample.stem)
-            samples["attack_type"].append("-")
-            samples["label"].append("spoof")
-                    
-        return pd.DataFrame(samples)
+            if not f1.exists():
+                print(f"{path} 경로를 찾을 수 없습니다.")
+            
+            samples_list = list(f1.rglob("*.wav"))
+            if self.subset == 'train':
+                samples_list = samples_list[:int(len(samples_list)*0.7)]
+                print(f"__KoAAD_train:{len(samples_list)}")
+            else:
+                samples_list = samples_list[int(len(samples_list)*0.7):]
+                print(f"__KoAAD_test:{len(samples_list)}")
+            for sample in samples_list:
+                samples["user_id"].append(None)
+                samples["path"].append(sample)
+                samples["sample_name"].append(sample.stem)
+                samples["attack_type"].append("-")
+                samples["label"].append("spoof")
+                        
+            return pd.DataFrame(samples)
 
