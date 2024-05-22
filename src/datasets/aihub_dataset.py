@@ -27,16 +27,14 @@ class AIHUB(SimpleAudioFakeDataset):
         samples_list = list(path.rglob("*.wav"))
         if self.subset == 'train':
             samples_list = samples_list[:int(len(samples_list)*0.7)]
-            print(f"__AIHUB_train:{len(samples_list)}")
         else:
             samples_list = samples_list[int(len(samples_list)*0.7):]
-            print(f"__AIHUB_test:{len(samples_list)}")
         for sample in samples_list:
             samples["user_id"].append(None)
             samples["path"].append(sample)
             samples["sample_name"].append(sample.stem)
             samples["attack_type"].append("-")
             samples["label"].append("bonafide")
-                    
+        print(f"__MAILABS_{self.subset}:{len(sample['label'])}") 
         return pd.DataFrame(samples)
 
