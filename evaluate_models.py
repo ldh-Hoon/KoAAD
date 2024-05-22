@@ -40,8 +40,8 @@ def evaluate_nn(
     data_val = DetectionDataset(
         MLAADv3_path=datasets_paths[0],
         MAILABS_path=datasets_paths[1],
-        AIHUB_path=datasets_paths[2],
-        KoAAD_path=datasets_paths[3],
+        KoAAD_path=datasets_paths[2],
+        AIHUB_path=datasets_paths[3],
         subset="test",
         reduced_number=amount_to_use,
         oversample=True,
@@ -140,8 +140,8 @@ def main(args):
         datasets_paths=[
             args.MLAADv3_path,
             args.MAILABS_path,
-            args.AIHUB_path,
             args.KoAAD_path,
+            args.AIHUB_path,
         ],
         model_config=config["model"],
         amount_to_use=args.amount,
