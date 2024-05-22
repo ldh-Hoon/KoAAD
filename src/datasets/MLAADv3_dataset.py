@@ -23,25 +23,27 @@ class MLAADv3(SimpleAudioFakeDataset):
         }
 
         for lang in self.languages:
-            path = self.root_path / f"fake/{lang}"
-            
-            if not path.exists():
-                print(f"{path} 경로를 찾을 수 없습니다.")
-                continue
-            
-            samples_list = list(path.rglob("*.wav"))
-            if self.subset == 'train':
-                samples_list = samples_list[:int(len(samples_list)*0.7)]
-                print(f"__MLAADv3_train:{len(samples_list)}")
-            else:
-                samples_list = samples_list[int(len(samples_list)*0.7):]
-                print(f"__MLAADv3_test:{len(samples_list)}")
-            for sample in samples_list:
-                samples["user_id"].append(None)
-                samples["language"].append(lang)
-                samples["path"].append(sample)
-                samples["sample_name"].append(sample.stem)
-                samples["attack_type"].append("-")
-                samples["label"].append("spoof")
+            r_path = self.root_path / f"fake/{lang}"
+            folders = list(r_path.glob("*"))
+            for folder in folders:
+                path = r_path / folder.name
+
+                if not path.exists():
+                    print(f"{path} 경로를 찾을 수 없습니다.")
+                    continue
+                samples_list = list(path.rglob("*.wav"))
+                if self.subset == 'train':
+                    samples_list = samples_list[:int(len(samples_list)*0.7)]
+                    print(f"__MLAADv3_train:{len(samples_list)}")
+                else:
+                    samples_list = samples_list[int(len(samples_list)*0.7):]
+                    print(f"__MLAADv3_test:{len(samples_list)}")
+                for sample in samples_list:
+                    samples["user_id"].append(None)
+                    samples["language"].append(lang)
+                    samples["path"].append(sample)
+                    samples["sample_name"].append(sample.stem)
+                    samples["attack_type"].append("-")
+                    samples["label"].append("spoof")
                     
         return pd.DataFrame(samples)
