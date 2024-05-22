@@ -1,6 +1,7 @@
 from src.datasets.base_dataset import SimpleAudioFakeDataset
 import pandas as pd
 from pathlib import Path
+import os
 
 class KoAAD(SimpleAudioFakeDataset):                                            
     def __init__(self, root_path, subset=None, **kwargs):
