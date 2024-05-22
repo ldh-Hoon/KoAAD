@@ -43,5 +43,5 @@ class MLAADv3(SimpleAudioFakeDataset):
                     samples["sample_name"].append(sample.stem)
                     samples["attack_type"].append("-")
                     samples["label"].append("spoof")
-        print(f"__MLAADv3_{self.subset}:{len(samples_list)}") 
+        print(f"__MLAADv3_{self.subset}:{len(sample['label'])}") 
         return pd.DataFrame(samples)
