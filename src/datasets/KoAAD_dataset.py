@@ -27,7 +27,7 @@ class KoAAD(SimpleAudioFakeDataset):
             if not f1.exists():
                 print(f"{path} 경로를 찾을 수 없습니다.")
             
-            samples_list = list(f1.rglob("*.wav"))
+            samples_list = list(f1.rglob("*.[wm][ap][v3]"))
             if self.subset == 'train':
                 samples_list = samples_list[:int(len(samples_list)*0.7)]
                 print(f"__KoAAD_train:{len(samples_list)}")
