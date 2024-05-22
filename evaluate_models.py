@@ -140,8 +140,8 @@ def main(args):
         datasets_paths=[
             args.MLAADv3_path,
             args.MAILABS_path,
-            args.KoAAD_path,
             args.AIHUB_path,
+            args.KoAAD_path,
         ],
         model_config=config["model"],
         amount_to_use=args.amount,
