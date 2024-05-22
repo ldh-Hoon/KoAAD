@@ -45,6 +45,6 @@ class MAILABS(SimpleAudioFakeDataset):
                         samples["sample_name"].append(sample.stem)
                         samples["attack_type"].append("-")
                         samples["label"].append("bonafide")
-
+        print("MAILABS_{self.subset}:{len(samples['label'])}")
         return pd.DataFrame(samples)
 
