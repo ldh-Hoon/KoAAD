@@ -33,11 +33,12 @@ class KoAAD(SimpleAudioFakeDataset):
             else:
                 samples_list = samples_list[int(len(samples_list)*0.7):]
             for sample in samples_list:
-                samples["user_id"].append(None)
-                samples["path"].append(sample)
-                samples["sample_name"].append(sample.stem)
-                samples["attack_type"].append("-")
-                samples["label"].append("spoof")
+                if os.path.exists(sample):
+                    samples["user_id"].append(None)
+                    samples["path"].append(sample)
+                    samples["sample_name"].append(sample.stem)
+                    samples["attack_type"].append("-")
+                    samples["label"].append("spoof")
 
         print(f"KoAAD_{self.subset}:{len(samples['label'])}")
         return pd.DataFrame(samples)
