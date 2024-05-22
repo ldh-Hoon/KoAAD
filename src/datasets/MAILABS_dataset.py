@@ -33,7 +33,7 @@ class MAILABS(SimpleAudioFakeDataset):
                 if self.subset == 'train':
                     samples_list = samples_list[:int(len(samples_list)*split[0])]
                 elif self.subset == 'test':
-                    samples_list = samples_list[int(len(samples_list)*(split[0]):]
+                    samples_list = samples_list[int(len(samples_list)*(split[0])):]
                 for sample in samples_list:
                     if sample.stem[0]==".":
                         continue
