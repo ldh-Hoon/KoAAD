@@ -30,10 +30,8 @@ class KoAAD(SimpleAudioFakeDataset):
             samples_list = list(f1.rglob("*.[wm][ap][v3]"))
             if self.subset == 'train':
                 samples_list = samples_list[:int(len(samples_list)*0.7)]
-                print(f"__KoAAD_train:{len(samples_list)}")
             else:
                 samples_list = samples_list[int(len(samples_list)*0.7):]
-                print(f"__KoAAD_test:{len(samples_list)}")
             for sample in samples_list:
                 samples["user_id"].append(None)
                 samples["path"].append(sample)
