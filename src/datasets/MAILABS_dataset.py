@@ -18,6 +18,7 @@ class MAILABS(SimpleAudioFakeDataset):
             "label": [],
             "path": []
         }
+        split = [0.7, 0.3]
 
         folders_1 = list(self.root_path.glob("en_US/by_book/*"))
         for f1 in folders_1:
