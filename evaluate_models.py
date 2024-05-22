@@ -144,7 +144,7 @@ def main(args):
             args.AIHUB_path,
         ],
         model_config=config["model"],
-        amount_to_use=args.test_amount,
+        amount_to_use=args.amount,
         device=device,
     )
 
