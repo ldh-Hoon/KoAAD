@@ -59,7 +59,7 @@ def prepare_lfcc_double_delta(input):
     delta = delta_fn(x)
     double_delta = delta_fn(delta)
     x = torch.cat((x, delta, double_delta), 2)  # -> [bs, 1, 128 * 3, 1500]
-    return x[:, :, :, :512]  # (bs, n, n_lfcc * 3, frames)
+    return x[:, :, :, :3000]  # (bs, n, n_lfcc * 3, frames)
 
 
 def prepare_mfcc_double_delta(input):
@@ -69,4 +69,4 @@ def prepare_mfcc_double_delta(input):
     delta = delta_fn(x)
     double_delta = delta_fn(delta)
     x = torch.cat((x, delta, double_delta), 2)  # -> [bs, 1, 128 * 3, 1500]
-    return x[:, :, :, :512]  # (bs, n, n_lfcc * 3, frames)
+    return x[:, :, :, :3000]  # (bs, n, n_lfcc * 3, frames)
