@@ -82,7 +82,7 @@ class SimpleAudioFakeDataset(Dataset):
                 attack_type = "N/A"
         else:
             path, label, attack_type = self.samples[index]
-        if not augmentation
+        if not augmentation:
             waveform, sample_rate = torchaudio.load(path, normalize=APPLY_NORMALIZATION)
             real_sec_length = len(waveform[0]) / sample_rate
     
