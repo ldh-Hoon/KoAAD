@@ -10,7 +10,7 @@ import torchaudio
 from torch.utils.data import Dataset
 from torch.utils.data.dataset import T_co
 
-BG_NOISE_PATH = "/content/Sample"
+BG_NOISE_PATH = "../Sample"
 LOGGER = logging.getLogger(__name__)
 
 SAMPLING_RATE = 16_000
