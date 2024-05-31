@@ -86,6 +86,16 @@ def parse_args():
         default=default_test_amount,
     )
 
+
+    default_augmentation = False
+    parser.add_argument(
+        "--augmentation",
+        "-aug",
+        help=f"Data augmentation (default: {default_augmentation}).",
+        type=bool,
+        default=default_augmentation,
+    )
+    
     default_batch_size = 8
     parser.add_argument(
         "--batch_size",
@@ -145,6 +155,7 @@ if __name__ == "__main__":
         ],
         device=device,
         amount_to_use=(args.train_amount, args.valid_amount),
+        augmentation=args.augmentation,
         batch_size=args.batch_size,
         epochs=args.epochs,
         model_dir=model_dir,
@@ -163,5 +174,6 @@ if __name__ == "__main__":
             args.KoAAD_path],
         model_config=config["model"],
         amount_to_use=args.test_amount,
+        augmentation=args.augmentation,
         device=device,
     )
