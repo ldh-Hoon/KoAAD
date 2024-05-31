@@ -27,7 +27,7 @@ def save_model(
 def get_datasets(
     datasets_paths: List[Union[Path, str]],
     amount_to_use: Tuple[Optional[int], Optional[int]],
-    aug: bool
+    augmentation: bool
 ) -> Tuple[DetectionDataset, DetectionDataset]:
     data_train = DetectionDataset(
         MLAADv3_path=datasets_paths[0],
