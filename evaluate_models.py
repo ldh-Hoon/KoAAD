@@ -21,6 +21,7 @@ def evaluate_nn(
     model_config: Dict,
     device: str,
     amount_to_use: Optional[int] = None,
+    augmentation:bool = False,
     batch_size: int = 8,
 ):
     logging.info("Loading data...")
@@ -42,6 +43,7 @@ def evaluate_nn(
         MAILABS_path=datasets_paths[1],
         AIHUB_path=datasets_paths[2],
         KoAAD_path=datasets_paths[3],
+        augmentation=augmentation,
         subset="test",
         reduced_number=amount_to_use,
         oversample=True,
@@ -144,6 +146,7 @@ def main(args):
             args.KoAAD_path
         ],
         model_config=config["model"],
+        augmentation=args.augmentation,
         amount_to_use=args.amount,
         device=device,
     )
@@ -197,7 +200,14 @@ def parse_args():
         type=int,
         default=default_amount,
     )
-
+    default_augmentation = None
+    parser.add_argument(
+        "--augmentation",
+        "-aug",
+        help=f"data augmentation (default: {default_augmentation}).",
+        type=bool,
+        default=default_augmentation,
+    )
     parser.add_argument("--cpu", "-c", help="Force using cpu", action="store_true")
 
     return parser.parse_args()
