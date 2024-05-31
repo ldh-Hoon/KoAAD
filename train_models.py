@@ -27,6 +27,7 @@ def save_model(
 def get_datasets(
     datasets_paths: List[Union[Path, str]],
     amount_to_use: Tuple[Optional[int], Optional[int]],
+    aug: bool
 ) -> Tuple[DetectionDataset, DetectionDataset]:
     data_train = DetectionDataset(
         MLAADv3_path=datasets_paths[0],
@@ -34,6 +35,7 @@ def get_datasets(
         AIHUB_path=datasets_paths[2],
         KoAAD_path=datasets_paths[3],
         subset="train",
+        augmentation=aug,
         reduced_number=amount_to_use[0],
         oversample=True,
     )
@@ -43,6 +45,7 @@ def get_datasets(
         AIHUB_path=datasets_paths[2],
         KoAAD_path=datasets_paths[3],
         subset="test",
+        augmentation=aug,
         reduced_number=amount_to_use[1],
         oversample=True,
     )
@@ -57,6 +60,7 @@ def train_nn(
     epochs: int,
     device: str,
     config: Dict,
+    augmentation: Optional[bool] = False,
     model_dir: Optional[Path] = None,
     amount_to_use: Tuple[Optional[int], Optional[int]] = (None, None),
     config_save_path: str = "configs",
@@ -72,6 +76,7 @@ def train_nn(
     data_train, data_test = get_datasets(
         datasets_paths=datasets_paths,
         amount_to_use=amount_to_use,
+        augmentation=augmentation,
     )
 
     current_model = models.get_model(
@@ -165,6 +170,7 @@ def main(args):
         batch_size=args.batch_size,
         epochs=args.epochs,
         model_dir=model_dir,
+        augmentation=args.augmentation,
         config=config,
     )
 
@@ -228,6 +234,16 @@ def parse_args():
         default=default_test_amount,
     )
 
+    default_augmentation = False
+    parser.add_argument(
+        "--augmentation",
+        "-aug",
+        help=f"data augmentation (default: {default_augmentation}).",
+        type=bool,
+        default=default_augmentation,
+    )
+
+    
     default_batch_size = 8
     parser.add_argument(
         "--batch_size",
