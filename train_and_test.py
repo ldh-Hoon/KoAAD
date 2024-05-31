@@ -165,15 +165,4 @@ if __name__ == "__main__":
     with open(evaluation_config_path, "r") as f:
         config = yaml.safe_load(f)
 
-    evaluate_models.evaluate_nn(
-        model_paths=config["checkpoint"].get("path", []),
-        batch_size=args.batch_size,
-        datasets_paths=[args.MLAADv3_path,
-            args.MAILABS_path,
-            args.AIHUB_path,
-            args.KoAAD_path],
-        model_config=config["model"],
-        amount_to_use=args.test_amount,
-        augmentation=args.augmentation,
-        device=device,
-    )
+    
