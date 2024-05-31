@@ -35,7 +35,7 @@ def get_datasets(
         AIHUB_path=datasets_paths[2],
         KoAAD_path=datasets_paths[3],
         subset="train",
-        augmentation=aug,
+        augmentation=augmentation,
         reduced_number=amount_to_use[0],
         oversample=True,
     )
