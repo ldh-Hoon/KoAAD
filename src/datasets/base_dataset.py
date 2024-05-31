@@ -115,8 +115,8 @@ class SimpleAudioFakeDataset(Dataset):
             elif n < 0.4:
                 waveform = add_gaussian_noise(waveform)
             elif n < 0.6:
-                other_index = random.randint(0, len(self.sample) - 1)
-                other_sample = self.sample.iloc[other_index] if isinstance(self.sample, pd.DataFrame) else self.sample[other_index]
+                other_index = random.randint(0, len(self.samples) - 1)
+                other_sample = self.samples.iloc[other_index] if isinstance(self.samples, pd.DataFrame) else self.samples[other_index]
                 other_path = str(other_sample["path"])
                 other_waveform, osr = torchaudio.load(other_path, normalize=True)
                 other_waveform, osr = apply_preprocessing(other_waveform, osr)
