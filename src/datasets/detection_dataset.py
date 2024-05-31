@@ -30,6 +30,7 @@ class DetectionDataset(SimpleAudioFakeDataset):
         AIHUB_path=None,
         KoAAD_path=None,
         subset: str = "val",
+        augmentation = False,
         transform=None,
         oversample: bool = True,
         undersample: bool = False,
@@ -42,6 +43,7 @@ class DetectionDataset(SimpleAudioFakeDataset):
             transform=transform,
             return_label=return_label,
             return_meta=return_meta,
+            augmentation = augmentation,
         )
         datasets = self._init_datasets(
             asvspoof_path=asvspoof_path,
@@ -53,6 +55,7 @@ class DetectionDataset(SimpleAudioFakeDataset):
             AIHUB_path=AIHUB_path,
             KoAAD_path=KoAAD_path,
             subset=subset,
+            augmentation = augmentation,
         )
         self.samples = pd.concat([ds.samples for ds in datasets], ignore_index=True)
 
@@ -71,6 +74,7 @@ class DetectionDataset(SimpleAudioFakeDataset):
     def _init_datasets(
         self,
         subset: str,
+        augmentation: bool,
         asvspoof_path: Optional[str],
         wavefake_path: Optional[str],
         fakeavceleb_path: Optional[str],
