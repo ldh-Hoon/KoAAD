@@ -35,7 +35,7 @@ def get_datasets(
         AIHUB_path=datasets_paths[2],
         KoAAD_path=datasets_paths[3],
         subset="train",
-        augmentation=augmentation,
+        augmentation=True,
         reduced_number=amount_to_use[0],
         oversample=True,
     )
@@ -60,7 +60,7 @@ def train_nn(
     epochs: int,
     device: str,
     config: Dict,
-    augmentation: Optional[bool] = False,
+    augmentation: bool = False,
     model_dir: Optional[Path] = None,
     amount_to_use: Tuple[Optional[int], Optional[int]] = (None, None),
     config_save_path: str = "configs",
@@ -234,7 +234,7 @@ def parse_args():
         default=default_test_amount,
     )
 
-    default_augmentation = False
+    default_augmentation = None
     parser.add_argument(
         "--augmentation",
         "-aug",
