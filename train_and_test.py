@@ -87,11 +87,11 @@ def parse_args():
     )
 
 
-    default_augmentation = False
+    default_augmentation = None
     parser.add_argument(
         "--augmentation",
         "-aug",
-        help=f"Data augmentation (default: {default_augmentation}).",
+        help=f"data augmentation (default: {default_augmentation}).",
         type=bool,
         default=default_augmentation,
     )
