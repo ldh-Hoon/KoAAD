@@ -1,3 +1,87 @@
+# 고도화된 보이스피싱 탐지를 위한 deepvoice audio detection
+
+> 세종대학교 2024 1학기 캡스톤디자인A 13조 프로젝트 코드용 repository입니다. 
+
+## 👨‍👨‍👧‍👧 참여자
+세종대학교 전자정보통신공학과
+[임동훈](https://github.com/ldh-Hoon), [이준호](https://github.com/Lanvizu), [문한송](https://github.com/MHANSONG), [김진환](https://github.com/kjhwan0115), 윤나경(추가 필요)
+
+## 📆 프로젝트 기간 
+
+2024년 3월 ~ 2024년 6월
+
+![image](https://github.com/ldh-Hoon/ko_deepfake-whisper-features/assets/139981434/85611a01-1d06-4cd1-99ce-12980923763f)
+
+## 🔎 개요
+### | 한국어 중심의 audio anti-spoofing 데이터셋 구축 시도
+국내에서도 다양한 딥보이스 피싱 [사례](https://imnews.imbc.com/replay/2024/nwtoday/article/6598469_36523.html)
+가 나타나며 새로운 방식의 범죄가 현실화되고 있다.
+
+하지만 대부분의 공개 데이터는 영어, 중국어 등 외국어에 한정되어 있다. 
+
+따라서 AIHUB 및 공개된 TTS 음성 수집 및 오픈소스 TTS 시스템을 활용해 데이터셋을 구축해보고자 했다.
+
+최종적으로 가짜 오디오 데이터셋인 KoAAD(Korean Audio Anti-spoofing Dataset)를 수집 및 생성했다.
+
+real audio는 [AIHUB 감성 및 발화스타일 동시고려 음성합성 데이터셋](https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=71349)을 사용한다.
+
+해당 데이터셋의 음성 전사 label text를 사용해 합성된 음성을 생성한다.
+
+>Google Cloud TTS
+ 
+>Melo TTS
+
+>XTTS2
+
+>Audio Pub 
+
+>네이버 기사 음성 요약
+
+>클로바더빙
+
+최종적으로 위 6개의 시스템에 대해 약 10GB, 3만개 내외의 음성 파일을 수집/생성할 수 있었다.
+
+### | 실제 통화와 유사한 환경에서의 탐지 데모 구현 및 테스트
+음성만 존재하는 데이터셋 오디오 파일들과 달리, 실제 대부분의 오디오 잡음 및 주변 환경음이 많이 포함되어 있다. 
+
+또한 통화는 최소 두명의 화자가 대화하게 되므로 성능에 영향이 있을 수 있다. 
+
+따라서 데이터 증강을 통한 학습, 통화녹음 데이터 사용, 화자 분리 등을 적용하여 실제 통화에 대한 탐지 데모 시스템을 구현하고자 시도했다.
+
+## demo 영상
+
+[유튜브](https://youtu.be/BfzrxwfoHds)
+
+## 기타 자료
+
+[KoAAD 및 Colab 코드 자료](https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=71349)
+> 아직 정리가 잘 안 되어있습니다.
+
+train Colab: <a href="https://colab.research.google.com/drive/1RHPZg6mdu_0X6-DfjZDKjZHUu5LJWElN?usp=sharing"><img src="https://img.shields.io/badge/open in Colab-F9AB00?style=flat&logo=Google Colab&logoColor=white" /></a>
+
+demo Colab: <a href="https://colab.research.google.com/drive/1Xph13KuqHoydh7Blj7qN-ccuROHHmi2d?usp=sharing"><img src="https://img.shields.io/badge/open in Colab-F9AB00?style=flat&logo=Google Colab&logoColor=white" /></a>
+
+다국어(한국어 미포함) fake audio 데이터셋인 [MLAAD](https://owncloud.fraunhofer.de/index.php/s/tL2Y1FKrWiX4ZtP) 와 real audio 데이터셋인 [MAILABS](https://www.caito.de/2019/01/03/the-m-ailabs-speech-dataset/) 를 함께 사용하면 좋다.
+
+
+
+# 참고 논문
+
+Kawa, Piotr, et al. "Improved DeepFake Detection Using Whisper Features." arXiv preprint arXiv:2306.01428 (2023).
+[paper](https://arxiv.org/abs/2306.01428)
+
+Müller, Nicolas M., et al. "MLAAD: The Multi-Language Audio Anti-Spoofing Dataset." arXiv preprint arXiv:2401.09512 (2024).
+[paper](https://arxiv.org/abs/2401.09512)
+
+
+
+
+# 아래는 기존 repository의 README.md입니다.
+
+
+
+
+
 # Improved DeepFake Detection Using Whisper Features
 
 The following repository contains code for our paper called "Improved DeepFake Detection Using Whisper Features".
