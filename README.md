@@ -48,6 +48,8 @@ real audio는 [AIHUB 감성 및 발화스타일 동시고려 음성합성 데이
 
 따라서 데이터 증강을 통한 학습, 통화녹음 데이터 사용, 화자 분리 등을 적용하여 실제 통화에 대한 탐지 데모 시스템을 구현하고자 시도했다.
 
+원본 repository의 whisper-LCNN을 baseline 모델로 활용했습니다
+
 ## demo 영상
 
 [유튜브](https://youtu.be/BfzrxwfoHds)
