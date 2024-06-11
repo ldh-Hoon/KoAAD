@@ -4,6 +4,7 @@
 
 ## 👨‍👨‍👧‍👧 참여자
 세종대학교 전자정보통신공학과
+
 [임동훈](https://github.com/ldh-Hoon), [이준호](https://github.com/Lanvizu), [문한송](https://github.com/MHANSONG), [김진환](https://github.com/kjhwan0115), 윤나경(추가 필요)
 
 ## 📆 프로젝트 기간 
