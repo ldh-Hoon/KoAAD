@@ -57,7 +57,7 @@ real audio는 [AIHUB 감성 및 발화스타일 동시고려 음성합성 데이
 
 ## 기타 자료
 
-[KoAAD 및 Colab 코드 자료](https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=71349)
+[KoAAD 및 Colab 코드 자료](https://drive.google.com/drive/folders/1RihDtMWUc5sPg5fNqJ_L015U6HMgwF2u?usp=drive_link)
 > 아직 정리가 잘 안 되어있습니다.
 
 train Colab: <a href="https://colab.research.google.com/drive/1RHPZg6mdu_0X6-DfjZDKjZHUu5LJWElN?usp=sharing"><img src="https://img.shields.io/badge/open in Colab-F9AB00?style=flat&logo=Google Colab&logoColor=white" /></a>
